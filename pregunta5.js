@@ -20,3 +20,19 @@ const beers = [
     { name: 'Stolen Fruit', abv: 4.6, label: 'https://s3.amazonaws.com/brewerydbapi/beer/YGT30k/upload_uVCHP7-large.png', type: 'Wheat' },
 ];
 
+function update(beers){
+  beers
+    .map(beer => {
+       beer.label = beer.label.replace('s3.amazonaws.com', 'tecnoshare.sharepoint.com')
+       
+       let ind1 =  beer.label.lastIndexOf('/');
+       let ind2 = beer.label.lastIndexOf('.');
+
+       beer.label = beer.label.substring(0, ind1 + 1)+ beer.name + beer.label.substring(ind2);
+       beer.label = beer.label.replace(' ','_');
+    }
+    );
+}
+
+update(beers);
+console.log(beers);
